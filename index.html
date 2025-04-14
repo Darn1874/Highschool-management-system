@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>High School Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>High School Management System</h1>
+            <div class="user-controls">
+                <span id="current-user">Admin</span>
+                <button id="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+                <li class="active" data-section="dashboard">Dashboard</li>
+                <li data-section="students">Students</li>
+                <li data-section="enrollment">Enrollment</li>
+                <li data-section="grades">Grades</li>
+                <li data-section="fees">Fee Management</li>
+                <li data-section="classes">Classes/Forms</li>
+                <li data-section="reports">Reports</li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h2>Dashboard Overview</h2>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <h3>Total Students</h3>
+                        <p id="total-students">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Fee Arrears</h3>
+                        <p id="fee-arrears">$0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Recent Exams</h3>
+                        <p id="recent-exams">0</p>
+                    </div>
+                </div>
+                <div class="recent-activity">
+                    <h3>Recent Activity</h3>
+                    <ul id="activity-list"></ul>
+                </div>
+            </section>
+
+            <!-- Students Section -->
+            <section id="students" class="section">
+                <h2>Student Records</h2>
+                <div class="search-bar">
+                    <input type="text" id="student-search" placeholder="Search students...">
+                    <button id="search-btn">Search</button>
+                </div>
+                <table id="students-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Class/Form</th>
+                            <th>Contact</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="pagination">
+                    <button id="prev-page">Previous</button>
+                    <span id="page-info">Page 1 of 1</span>
+                    <button id="next-page">Next</button>
+                </div>
+            </section>
+
+            <!-- Enrollment Section -->
+            <section id="enrollment" class="section">
+                <h2>Enroll New Student</h2>
+                <form id="enrollment-form">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" required>
+                            <option value="">Select</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="class-form">Class/Form</label>
+                        <select id="class-form" required>
+                            <option value="">Select</option>
+                            <option value="Form 1">Form 1</option>
+                            <option value="Form 2">Form 2</option>
+                            <option value="Form 3">Form 3</option>
+                            <option value="Form 4">Form 4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent-name">Parent/Guardian Name</label>
+                        <input type="text" id="parent-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="parent-phone">Parent Phone</label>
+                        <input type="tel" id="parent-phone" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Enroll Student</button>
+                </form>
+            </section>
+
+            <!-- Grades Section -->
+            <section id="grades" class="section">
+                <h2>Grade Management</h2>
+                <div class="grade-controls">
+                    <div class="form-group">
+                        <label for="grade-class">Select Class/Form</label>
+                        <select id="grade-class">
+                            <option value="">All Classes</option>
+                            <option value="Form 1">Form 1</option>
+                            <option value="Form 2">Form 2</option>
+                            <option value="Form 3">Form 3</option>
+                            <option value="Form 4">Form 4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="grade-subject">Select Subject</label>
+                        <select id="grade-subject">
+                            <option value="">All Subjects</option>
+                            <option value="Math">Mathematics</option>
+                            <option value="English">English</option>
+							<option value="Math">Kiswahili</option>
+                            <option value="English">Biology</option>
+							<option value="Math">Physics</option>
+                            <option value="English">History & Government</option>
+                            <option value="Science">Chemistry</option>
+                            <option value="History">CRE</option>
+							 <option value="History">Geography</option>
+							  <option value="History">Business Studies</option>
+							 <option value="History">Agriculture</option>
+							
+							
+                        </select>
+                    </div>
+                    <button id="load-grades">Load Grades</button>
+                </div>
+                <table id="grades-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Subject</th>
+                            <th>Score</th>
+                            <th>Grade</th>
+                            <th>Remarks</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="add-grade-form">
+                    <h3>Add/Update Grade</h3>
+                    <form id="grade-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="grade-student">Student</label>
+                                <select id="grade-student" required>
+                                    <option value="">Select Student</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="grade-subject-input">Subject</label>
+                                <select id="grade-subject-input" required>
+                                    <option value="">Select Subject</option>
+                                    <option value="Math">Mathematics</option>
+                                    <option value="English">English</option>
+							        <option value="Math">Kiswahili</option>
+                                    <option value="English">Biology</option>
+							        <option value="Math">Physics</option>
+                                    <option value="English">History & Government</option>
+                                    <option value="Science">Chemistry</option>
+                                    <option value="History">CRE</option>
+							        <option value="History">Geography</option>
+							        <option value="History">Business Studies</option>
+							        <option value="History">Agriculture</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="grade-score">Score</label>
+                                <input type="number" id="grade-score" min="0" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="grade-exam">Exam Type</label>
+                                <select id="grade-exam" required>
+                                    <option value="Midterm">Midterm</option>
+                                    <option value="Final">Final</option>
+                                    <option value="Quiz">Quiz</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="grade-remarks">Remarks</label>
+                            <textarea id="grade-remarks" rows="3"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Save Grade</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Fee Management Section -->
+            <section id="fees" class="section">
+                <h2>Fee Management</h2>
+                <div class="fee-controls">
+                    <div class="form-group">
+                        <label for="fee-class">Filter by Class/Form</label>
+                        <select id="fee-class">
+                            <option value="">All Classes</option>
+                            <option value="Form 1">Form 1</option>
+                            <option value="Form 2">Form 2</option>
+                            <option value="Form 3">Form 3</option>
+                            <option value="Form 4">Form 4</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="fee-status">Filter by Payment Status</label>
+                        <select id="fee-status">
+                            <option value="">All</option>
+                            <option value="paid">Paid</option>
+                            <option value="unpaid">Unpaid</option>
+                            <option value="partial">Partial</option>
+                        </select>
+                    </div>
+                    <button id="load-fees">Load Records</button>
+                </div>
+                <table id="fees-table">
+                    <thead>
+                        <tr>
+                            <th>Student ID</th>
+                            <th>Student Name</th>
+                            <th>Class</th>
+                            <th>Total Fees</th>
+                            <th>Paid</th>
+                            <th>Balance</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Filled by JavaScript -->
+                    </tbody>
+                </table>
+                <div class="add-payment-form">
+                    <h3>Record Payment</h3>
+                    <form id="payment-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="payment-student">Student</label>
+                                <select id="payment-student" required>
+                                    <option value="">Select Student</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-amount">Amount</label>
+                                <input type="number" id="payment-amount" min="0" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="payment-date">Date</label>
+                                <input type="date" id="payment-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="payment-method">Payment Method</label>
+                                <select id="payment-method" required>
+                                    <option value="Cash">Cash</option>
+                                    <option value="Bank Transfer">Bank Transfer</option>
+                                    <option value="Mobile Money">Mobile Money</option>
+                                    <option value="Check">Check</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payment-notes">Notes</label>
+                            <textarea id="payment-notes" rows="2"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Record Payment</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Classes/Forms Section -->
+            <section id="classes" class="section">
+                <h2>Class/Form Management</h2>
+                <div class="class-list">
+                    <h3>Current Classes/Forms</h3>
+                    <ul id="classes-list">
+                        <li>Form 1 <span class="student-count">(25 students)</span></li>
+                        <li>Form 2 <span class="student-count">(30 students)</span></li>
+                        <li>Form 3 <span class="student-count">(28 students)</span></li>
+                        <li>Form 4 <span class="student-count">(32 students)</span></li>
+                    </ul>
+                </div>
+                <div class="add-class-form">
+                    <h3>Add New Class/Form</h3>
+                    <form id="class-form">
+                        <div class="form-group">
+                            <label for="new-class-name">Class/Form Name</label>
+                            <input type="text" id="new-class-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="class-teacher">Class Teacher</label>
+                            <input type="text" id="class-teacher">
+                        </div>
+                        <button type="submit" class="submit-btn">Add Class</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="section">
+                <h2>System Reports</h2>
+                <div class="report-options">
+                    <div class="report-card" data-report="student-list">
+                        <h3>Student List</h3>
+                        <p>Generate list of all students</p>
+                    </div>
+                    <div class="report-card" data-report="fee-report">
+                        <h3>Fee Report</h3>
+                        <p>Generate fee payment reports</p>
+                    </div>
+                    <div class="report-card" data-report="exam-results">
+                        <h3>Exam Results</h3>
+                        <p>Generate exam result reports</p>
+                    </div>
+                    <div class="report-card" data-report="attendance">
+                        <h3>Attendance</h3>
+                        <p>Generate attendance reports</p>
+                    </div>
+                </div>
+                <div class="report-form-container">
+                    <form id="report-form" class="hidden">
+                        <div id="report-params">
+                            <!-- Parameters will be added dynamically based on report type -->
+                        </div>
+                        <button type="submit" class="submit-btn">Generate Report</button>
+                    </form>
+                    <div id="report-results" class="hidden">
+                        <!-- Report results will be displayed here -->
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for student details -->
+    <div id="student-modal" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 id="modal-title">Student Details</h2>
+            <div id="modal-body">
+                <!-- Content will be loaded dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
